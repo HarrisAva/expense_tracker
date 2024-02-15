@@ -1,20 +1,23 @@
 class User < ApplicationRecord
+    # give every instance of user 'password and password_confirmation attributes'
+    has_secure_password 
+
     has_many :expenses
     has_many :categories, through: :expenses
 
     # Validation
-    validates :username, presence: true, uniqueness: true, length: {minimum: 3, maximum: 30}
-    validate :validate_username
-    validates :email, presence: true, uniqueness: true, length: {minimum: 5, maximum: 255}, format: {with: URI::MailTo::EMAIL_REGEXP}
+    validates :username, presence: true, uniqueness: true
+    validates :email, presence: true, uniqueness: true
     validates :first_name, presence: true
     validates :last_name, presence: true
+    # validate :validate_username
 
 
     private
 
-    def validate_username
-        unless username =~ /\A[a-zA-Z0-9_]+\Z/
-            error.add(:username, "can only contain letters, numbers and underscore")
-        end
-    end
+    # def validate_username
+    #     unless username =~ /\A[a-zA-Z0-9_]+\Z/
+    #         error.add(:username, "can only contain letters, numbers and underscore")
+    #     end
+    # end
 end
