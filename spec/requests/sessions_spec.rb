@@ -17,7 +17,7 @@ RSpec.describe "Sessions", type: :request do
   context 'with invalid credentials' do
     it 'does not authenticate the user and returns an error response' do
       post '/login', params: { username: user.username, password: 'wrong_password' } 
-  # pretend to input wrong_password so it does not match
+
       expect(response).to have_http_status(:unauthorized)
     end
   end

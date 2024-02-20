@@ -10,9 +10,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @current_user = User.find(params[:id])
 
-     render json: UserBlueprint.render(@user, view: :normal), status: 200
+     render json: UserBlueprint.render(@current_user, view: :normal), status: 200
   end
 
   def create
