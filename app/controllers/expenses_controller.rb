@@ -10,17 +10,15 @@ class ExpensesController < ApplicationController
     end
   
     def show
-      @expense = Expense.find(params[:id])
-  
-       render json: UserBlueprint.render(@expense, view: :normal), status: 200
+      render json: @expense, status: :ok
     end
   
     def create
-      # user = Expense.create(expense_params)
-      user = @current_user.expenses.new(expense_params)
+      #  expense = Expense.new(expense_params)
+        expense = @current_user.expenses.new(expense_params)
   
       if expense.save
-        render json: user, status: :created
+        render json: expense, status: :created
       else
         render json: expense.errors, status: :unprocessable_entity
       end
@@ -56,7 +54,7 @@ class ExpensesController < ApplicationController
     end
   
     def expense_params
-      params.permit(:date, :title, :description, :amount, :category)
+      params.permit(:date, :title, :description, :amount)
     end
   end
   

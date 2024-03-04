@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_request, only: [:index, :show, :update, :destroy]
+  # before_action :authenticate_request, only: [:index, :show, :update, :destroy]
   before_action :set_user, only: [:show, :update, :destroy]
 
 
@@ -10,9 +10,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    @current_user = User.find(params[:id])
+    @user = User.find(params[:id])
 
-     render json: UserBlueprint.render(@current_user, view: :normal), status: 200
+     render json: UserBlueprint.render(@user, view: :normal), status: 200
   end
 
   def create
@@ -57,6 +57,6 @@ class UsersController < ApplicationController
   def user_params
     params.permit(:username, :email, :first_name, :last_name, :password, :password_confirmation)
   end
-end
+   end
 
 

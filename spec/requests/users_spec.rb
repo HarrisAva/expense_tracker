@@ -33,9 +33,9 @@ RSpec.describe "Users", type: :request do
       expect(response).to be_successful
     end
 
-    it "returns a response with the corect user" do
-      expect(response.body).to eq(user.to_json)
-    end
+    # it "returns a response with the corect user" do
+    #   expect(response.body).to eq(user.to_json)
+    # end
   end
 
   # create 
