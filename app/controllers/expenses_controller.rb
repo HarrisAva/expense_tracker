@@ -1,12 +1,17 @@
 class ExpensesController < ApplicationController
-    before_action :authenticate_request, only: [:index, :show, :update, :destroy]
-    before_action :set_user, only: [:show, :update, :destroy]
+    before_action :authenticate_request, except: [:index]
+    before_action :set_expense, only: [:show, :update, :destroy]
   
   
     def index
-      expenses = Expense.all 
-  
+      #  expenses = Expense.all 
+      expenses = Expense.order(created_at: :desc)
       render json: expenses, status: 200
+    end
+
+    def my_expenses
+      expenses = @current_user.expenses.order(created_at: :desc)
+      render json: ExpenseBlueprint.render(expenses, view: :normal), status: :ok
     end
   
     def show
@@ -41,20 +46,24 @@ class ExpensesController < ApplicationController
       end
     end
    
-  #   def expenses_index
-  #     user = User.find(params[:user_id])
-  #     user_expenses = User.expenses
+    # def expenses_index
+    #   user = User.find(params[:user_id])
+    #   user_expenses = User.expenses
+    #   user_expenses_sum = User.expenses.sum(:amount)
   
-  #     render json: user_expenses, status: :ok
-  #   end
+    #   render json: user_expenses, status: :ok
+    # end
   
     private
     def set_expense 
-      @expense = Expense.find(params[:id])
+       @expense = Expense.find(params[:id])
+      # @current_user.expenses.find_by(id: params[id])
+      # render json: { error: 'Expense not found' }, status: :not_found
+      # unless @expense
     end
   
     def expense_params
-      params.permit(:date, :title, :description, :amount)
+      params.permit(:date, :title, :description, :amount, :category_id, :user_id)
     end
   end
   

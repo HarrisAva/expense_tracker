@@ -4,10 +4,10 @@ class ExpenseBlueprint < Blueprinter::Base
     identifier :id
 
     view :normal do
-        fields :date, :title, :amount, :catetory_id
+        fields :date, :title, :amount, :category_id
     end
 
-    vidw :extended do
+    view :extended do
         fields :date, :title, :amount, :description, :category_id
     end
 end

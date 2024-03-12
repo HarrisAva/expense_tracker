@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'categories/index'
   get 'web/bootstrap'
   get 'sessions/create'
   
@@ -6,5 +7,8 @@ Rails.application.routes.draw do
 
   resources :users
   resources :expenses
+  resources :categories
+
+  get '/my_expenses', to: 'expenses#my_expenses'
 
 end
