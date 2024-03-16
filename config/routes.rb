@@ -6,9 +6,12 @@ Rails.application.routes.draw do
   post '/login', to:'sessions#create'
 
   resources :users
+
+  get '/my_expenses', to: 'expenses#my_expenses'
+
+  patch '/expenses/:id', to: 'expenses#update', as: 'expense'
   resources :expenses
   resources :categories
 
-  get '/my_expenses', to: 'expenses#my_expenses'
 
 end

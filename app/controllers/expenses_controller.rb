@@ -15,6 +15,7 @@ class ExpensesController < ApplicationController
     end
   
     def show
+      @expense = Expense.find(params[:id])  # grab the id
       render json: @expense, status: :ok
     end
   
@@ -30,6 +31,7 @@ class ExpensesController < ApplicationController
     end
   
     def update
+       @expense = Expense.find(params[:id])
       if
         @expense.update(expense_params)
         render json: @expense, status: :ok
