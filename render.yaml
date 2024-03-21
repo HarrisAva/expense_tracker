@@ -1,12 +1,12 @@
 databases:
-  - name: ExpenseTracker
-    databaseName: ExpenseTracker
-    user: ExpenseTracker
+  - name: expensetracker
+    databaseName: expensetracker
+    user: expensetracker
     plan: free
 
 services:
   - type: web
-    name: ExpenseTracker
+    name: expensetracker
     runtime: ruby
     plan: free
     buildCommand: "./bin/render-build.sh" # to create this file
@@ -15,7 +15,7 @@ services:
     envVars:
       - key: DATABASE_URL # to decrypt sensitive info using a master key
         fromDatabase:
-          name: ExpenseTracker
+          name: expensetracker
           property: connectionString
       - key: RAILS_MASTER_KEY # use it to decrypt sensitive info
         sync: false
