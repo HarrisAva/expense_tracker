@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'categories/index'
+ 
   get 'web/bootstrap'
   get 'sessions/create'
   

@@ -1,7 +1,8 @@
 class Category < ApplicationRecord
     Association
     has_many :expenses
-    has_many :users, through: :expenses
+    # has_many :users, through: :expenses
+    has_many :users
     
 
     # has_and_belongs_to_many :expenses
