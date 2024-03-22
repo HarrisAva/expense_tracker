@@ -4,8 +4,8 @@ class User < ApplicationRecord
     has_secure_password 
 
     has_many :expenses
-    has_many :categories
-    # has_many :categories, through: :expenses
+    # has_many :categories
+     has_many :categories, through: :expenses
     # has_many :expenses, class_name: 'Expense', foreign_key: 'user_id'
     # has_many :categories, class_name: 'Category', foreign_key: 'user_id'
 
