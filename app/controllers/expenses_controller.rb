@@ -5,12 +5,16 @@ class ExpensesController < ApplicationController
   
     def index
       #  expenses = Expense.all 
-      expenses = Expense.order(created_at: :desc)
-      render json: expenses, status: 200
+      # expenses = Expense.order(created_at: :desc)
+      # render json: expenses, status: 200
+
+      # display associated expense.category properties (name)
+      expenses = Expense.includes(:category).order(created_at: :desc)
+      render json: ExpenseBlueprint.render(expenses, view: :normal), status: :ok
     end
 
     def my_expenses
-      expenses = @current_user.expenses.order(created_at: :desc)
+      expenses = @current_user.expenses.includes(:category).order(created_at: :desc)
       render json: ExpenseBlueprint.render(expenses, view: :normal), status: :ok
     end
   
