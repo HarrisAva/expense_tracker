@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :users
 
   get '/my_expenses', to: 'expenses#my_expenses'
+  get '/expenses_by_category', to: 'expenses#expenses_by_category'
+ 
+  # get '/my_monthly_summary', to: 'expenses#my_monthly_summary'
 
   patch '/expenses/:id', to: 'expenses#update', as: 'expense'
   resources :expenses

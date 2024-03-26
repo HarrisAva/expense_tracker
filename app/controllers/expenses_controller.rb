@@ -1,5 +1,5 @@
 class ExpensesController < ApplicationController
-    before_action :authenticate_request, except: [:index]
+     before_action :authenticate_request, except: [:index]
     before_action :set_expense, only: [:show, :update, :destroy]
   
   
@@ -15,8 +15,38 @@ class ExpensesController < ApplicationController
 
     def my_expenses
       expenses = @current_user.expenses.includes(:category).order(created_at: :desc)
+
       render json: ExpenseBlueprint.render(expenses, view: :normal), status: :ok
+
+      # selected_month = params[:month]
+      # selected_category = params[:category]
+
+      # expenses_by_month = expenses.group_by { |expense| expense.date.strftime("%Y-%m")}
+      # expenses_by_year = expenses.group_by { |expense| expense.date.year }
+
+      # @total_expenses = expenses.sum(:amount)
     end
+
+    def expenses_by_category
+      expenses = @current_user.expenses.all.includes(:category)
+      expenses_by_category = expenses.group_by { |expense| expense.category.name }
+      
+      result = expenses_by_category.map do |category, expenses|
+        total_amount = expenses.sum(&:amount)
+        { category: category, total_amount: total_amount }
+      end
+
+      render json: result, status: :ok
+    end
+
+    # def monthly_summary
+    #   monthly_summary = @current_user.expenses.includes(:category).where(created_at: last_month.beginning_of_month..last_month.end_of_month).order(crated_at: :desc)
+
+    #   total_expenses = expenses.sum(:amount)
+      
+    #   render json: monthly_summary, status: :ok
+
+    # end
   
     def show
       @expense = Expense.find(params[:id])  # grab the id
