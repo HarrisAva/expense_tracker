@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 class UserBlueprint < Blueprinter::Base
     identifier :id
@@ -10,9 +9,5 @@ class UserBlueprint < Blueprinter::Base
     view :me do
       fields :first_name, :last_name, :username, :email
   end
-  
-    # view :expenses do 
-    #   association :expenses, blueprint: Expenselueprint
-    # end
   
   end

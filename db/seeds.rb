@@ -12,26 +12,26 @@
 # Expense.destroy_all
 
 # Create 3 users
-3.times do |i|
-  user = User.create(
-    username: "User#{i+1}", 
-    email: "user#{i+1}@example.com",
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    password: 'password',
-    password_confirmation: 'password'
-    )
+# 3.times do |i|
+#   user = User.create(
+#     username: "User#{i+1}", 
+#     email: "user#{i+1}@example.com",
+#     first_name: Faker::Name.first_name,
+#     last_name: Faker::Name.last_name,
+#     password: 'password',
+#     password_confirmation: 'password'
+#     )
 
   # Create 5 expenses for each user
-  10.times do |j|
-    Expense.create(
-      user: user,
-      category_id: rand(1..12),
-      amount: rand(10..1000),
-      date: Faker::Date.between(from: 1.month.ago, to: Date.today)
-    )
-  end
-end
+#   10.times do |j|
+#     Expense.create(
+#       user: user,
+#       category_id: rand(1..12),
+#       amount: rand(10..1000),
+#       date: Faker::Date.between(from: 1.month.ago, to: Date.today)
+#     )
+#   end
+# end
 
 
 

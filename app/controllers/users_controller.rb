@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-   before_action :authenticate_request, only: [:index, :show, :update, :destroy]
+  before_action :authenticate_request, only: [:index, :show, :update, :destroy]
   before_action :set_user, only: [:show, :update, :destroy]
-
 
   def index
     users = User.all 
@@ -41,13 +40,6 @@ class UsersController < ApplicationController
       render json: @user.errors, status: :unprocessable_entity
     end
   end
- 
-#   def expenses_index
-#     user = User.find(params[:user_id])
-#     user_expenses = user.expenses
-
-#     render json: user_expenses, status: :ok
-#   end
 
   private
   def set_user 
@@ -57,6 +49,4 @@ class UsersController < ApplicationController
   def user_params
     params.permit(:username, :email, :first_name, :last_name, :password, :password_confirmation)
   end
-   end
-
-
+end

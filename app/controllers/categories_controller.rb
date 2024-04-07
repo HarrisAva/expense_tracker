@@ -1,9 +1,8 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_request, except: [:index]
-  # before_action :set_category, only: [:show, :update, :destroy]
+
   def index
     categories = Category.all
-    # render json: CategoryBlueprint.render(categories), status: :ok
     render json: categories, status: 200
   end
 
