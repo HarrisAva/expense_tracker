@@ -9,7 +9,7 @@ services:
     name: expensetracker
     runtime: ruby
     plan: free
-    buildCommand: "./bin/render-build.sh" # to create this file
+    buildCommand: "./bin/render-build.sh"
     # preDeployCommand: "./bin/rails db:migrate" # preDeployCommand only available on paid instance types
     startCommand: "./bin/rails server"
     envVars:
@@ -17,7 +17,7 @@ services:
         fromDatabase:
           name: expensetracker
           property: connectionString
-      - key: RAILS_MASTER_KEY # use it to decrypt sensitive info
+      - key: RAILS_MASTER_KEY # use it to decrypt sensitive info, e.g. credentials
         sync: false
       - key: WEB_CONCURRENCY
         value: 2 # sensible default
