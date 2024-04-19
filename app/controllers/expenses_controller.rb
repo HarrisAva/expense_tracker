@@ -1,5 +1,5 @@
 class ExpensesController < ApplicationController
-    # before_action :authenticate_request, except: [:index]
+    before_action :authenticate_request, except: [:index]
     before_action :set_expense, only: [:show, :update, :destroy]
   
     def index
