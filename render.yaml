@@ -11,7 +11,9 @@ services:
     plan: free
     buildCommand: "./bin/render-build.sh"
     # preDeployCommand: "./bin/rails db:migrate" # preDeployCommand only available on paid instance types
-    startCommand: "./bin/rails server"
+     startCommand: "./bin/rails server"
+
+    # startCommand: "bundle exec rails server" # to test production issue
     envVars:
       - key: DATABASE_URL # to decrypt sensitive info using a master key
         fromDatabase:
